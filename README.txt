@@ -1,0 +1,12 @@
+这个项目的构建基于python2.7和django1.11.6,使用pycharm设计
+我的数据库表建立在blog/models.py里现在只有4个表；分类，标签，文章，用户
+现在只实现了几个功能：
+			1.访问主页
+			2.从主页上的链接访问某一篇文章详细的网页
+			3.从后台登陆增加或者修改文章
+			4.集成了一个富文本编辑器，可以实现编辑带多媒体的博文
+现在的逻辑：
+		访问网页基本http，urls.py会调用blog/urls.py里的index-url，然后调用blog/views.py里的index函数，渲染一个基于
+		base.html的index.html
+		index.html上有每一篇独立文章的url，blog/urls.py里的detail-url会匹配他们的正则表达式，传参pk并调用blog/views.py里的detail
+		函数，渲染一个detail.html
