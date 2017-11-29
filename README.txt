@@ -1,14 +1,16 @@
-�����Ŀ�Ĺ�������python2.7��django1.11.6,ʹ��pycharm���
-�ҵ����ݿ��������blog/models.py������ֻ��4���������࣬��ǩ�����£��û�
-����ֻʵ���˼������ܣ�
-			1.������ҳ
-			2.����ҳ�ϵ����ӷ���ĳһƪ������ϸ����ҳ
-			3.�Ӻ�̨��½���ӻ����޸�����
-			4.������һ�����ı��༭��������ʵ�ֱ༭����ý��Ĳ���
-			5.ʵ������ҳ�����Ĺ鵵���ܣ��������¹鵵���·ݹ鵵������鵵
-���ڵ��߼���
-		1.������ҳ����http��urls.py�����blog/urls.py���index-url��Ȼ�����blog/views.py���index��������Ⱦһ������
-		base.html��index.html
-		2.index.html����ÿһƪ�������µ�url��blog/urls.py���detail-url��ƥ�����ǵ��������ʽ������pk������blog/views.py���detail
-		��������Ⱦһ��detail.html
-		3.��blog/templatetags/blog_tags.py��ʹ����������ʵ�ֹ鵵��base.htmlҲ������Ӧ���
+﻿这个项目的构建基于python2.7和django1.11.6,使用pycharm设计
+我的数据库表建立在blog/models.py里现在只有4个表；分类，标签，文章，用户，在comments/models.py中还有一个
+现在只实现了几个功能：
+			1.访问主页
+			2.从主页上的链接访问某一篇文章详细的网页
+			3.从后台登陆增加或者修改文章
+			4.集成了一个富文本编辑器，可以实现编辑带多媒体的博文
+			5.实现了网页侧栏的归档功能，最新文章归档，月份归档，分类归档
+			6.实现了在每篇文章下添加评论的功能
+现在的逻辑：
+		1.访问网页基本http，urls.py会调用blog/urls.py里的index-url，然后调用blog/views.py里的index函数，渲染一个基于
+		base.html的index.html
+		2.index.html上有每一篇独立文章的url，blog/urls.py里的detail-url会匹配他们的正则表达式，传参pk并调用blog/views.py里的detail
+		函数，渲染一个detail.html
+		3.在blog/templatetags/blog_tags.py里使用三个函数实现归档，base.html也做了相应设计
+		4.在comments/中有views.py,forms.py,models.py共同实现添加评论的功能，然后在detail.html中也做了相应设计

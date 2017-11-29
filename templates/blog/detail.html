@@ -20,23 +20,28 @@
     <section class="comment-area" id="comment-area">
                     <hr>
                     <h3>发表评论</h3>
-                    <form action="#" method="post" class="comment-form">
+                    <form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="id_name">名字：</label>
-                                <input type="text" id="id_name" name="name" required>
+                                <label for="{{ form.name.id_for_lable }}">名字：</label>
+                                {{ form.name }}
+                                {{ form.name.errors }}
                             </div>
                             <div class="col-md-4">
-                                <label for="id_email">邮箱：</label>
-                                <input type="email" id="id_email" name="email" required>
+                                <label for="{{ form.email.id_for_lable }}">邮箱：</label>
+                                {{ form.email }}
+                                {{ form.email.errors }}
                             </div>
                             <div class="col-md-4">
-                                <label for="id_url">网址：</label>
-                                <input type="text" id="id_url" name="url">
+                                <label for="{{ form.url.id_for_lable }}">网址：</label>
+                                {{ form.url }}
+                                {{ form.url.errors }}
                             </div>
                             <div class="col-md-12">
-                                <label for="id_comment">评论：</label>
-                                <textarea name="comment" id="id_comment" required></textarea>
+                                <label for="{{ form.text.id_for_lable }}">评论：</label>
+                                {{ form.text }}
+                                {{ form.text.errors }}
                                 <button type="submit" class="comment-btn">发表</button>
                             </div>
                         </div>    <!-- row -->
@@ -44,34 +49,17 @@
                     <div class="comment-list-panel">
                         <h3>评论列表，共 <span>4</span> 条评论</h3>
                         <ul class="comment-list list-unstyled">
+                           {% for comment in comment_list %}
                             <li class="comment-item">
-                                <span class="nickname">追梦人物</span>
-                                <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年3月12日 14:56</time>
+                                <span class="nickname">{{ comment.name }}</span>
+                                <time class="submit-date">{{ comment.create_time }}</time>
                                 <div class="text">
-                                    哇！好漂亮的小姐姐啊！
+                                    {{ comment.text }}
                                 </div>
                             </li>
-                            <li class="comment-item">
-                                <span class="nickname">zmrenwu</span>
-                                <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年3月11日 23:56</time>
-                                <div class="text">
-                                    她不可能是你老婆的。
-                                </div>
-                            </li>
-                            <li class="comment-item">
-                                <span class="nickname">蝙蝠侠</span>
-                                <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年3月9日 8:56</time>
-                                <div class="text">
-                                    真的好漂亮啊！
-                                </div>
-                            </li>
-                            <li class="comment-item">
-                                <span class="nickname">长江七号</span>
-                                <time class="submit-date" datetime="2012-11-09T23:15:57+00:00">2017年2月12日 12:56</time>
-                                <div class="text">
-                                    死宅真恶心！
-                                </div>
-                            </li>
+                            {% empty %}
+                            暂无评论！
+                            {% endfor %}
                         </ul>
                     </div>
     </section>

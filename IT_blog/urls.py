@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('blog.urls')),
     url(r'^ueditor/',include(DjangoUeditor_urls)),
+    url(r'',include('comments.urls'))
 
 ]
 
