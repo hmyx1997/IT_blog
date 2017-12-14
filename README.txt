@@ -8,6 +8,11 @@
 			5.实现了网页侧栏的归档功能，最新文章归档，月份归档，分类归档
 			6.实现了在每篇文章下添加评论的功能
 			7.实现了在index.html中文章大标题下方的，分类，时间超链接功能，实现了点击评论数跳转到文章详情页评论处
+			8.实现了统计阅读数的功能
+			9.实现了统计分类下和标签下文章数的功能
+			10.将blog/views.py里的一些原有的分类归档的函数使用listview类复写，以便达成翻页的功能
+			11.实现了翻页的功能，
+			12.实现了全文搜索并且能够高亮关键字，需要 Whoosh，django-haystack，jieba等第三方库
 现在的逻辑：
 		1.访问网页基本http，urls.py会调用blog/urls.py里的index-url，然后调用blog/views.py里的index函数，渲染一个基于
 		base.html的index.html
@@ -15,3 +20,4 @@
 		函数，渲染一个detail.html
 		3.在blog/templatetags/blog_tags.py里使用三个函数实现归档，base.html也做了相应设计
 		4.在comments/中有views.py,forms.py,models.py共同实现添加评论的功能，然后在detail.html中也做了相应设计
+		5.blog/models.py里的Post类里增加了字段和子函数，在views.py里增加了函数，在模板里做了相应修改

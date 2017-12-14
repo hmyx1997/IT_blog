@@ -8,7 +8,7 @@ from blog.models import Post
 
 class Comment(models.Model):
     name = models.CharField(max_length=100)#评论用户名
-    email = models.CharField(max_length=255)#评论用户邮箱
+    email = models.EmailField(max_length=255)#评论用户邮箱
     url = models.URLField(blank=True)#评论用户个人网站
     text = models.TextField()#正文
     create_time = models.DateTimeField(auto_now_add=True)#评论时间，自动取评论发生时间

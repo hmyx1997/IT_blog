@@ -20,10 +20,11 @@ from . import views
 
 app_name = 'blog'
 urlpatterns = [
-    url(r'^$',views.index,name='index'),#输入基础网址进入首页
+    url(r'^$',views.IndexView.as_view(),name='index'),#输入基础网址进入首页
     url(r'^post/(?P<pk>[0-9]+)/$',views.detail,name='detail'),#从首页里获取某篇文章请求，通过正则表达式匹配并获取文章的pk
-    url(r'^archives/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$',views.archives,name='archives'),
+    url(r'^archives/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$',views.ArchivesView.as_view(),name='archives'),
     #通过正则取年月的值，传给views.py的archives函数
-    url(r'^category/(?P<pk>[0-9]+)/$',views.category,name='category')
+    url(r'^category/(?P<pk>[0-9]+)/$',views.CategoryView.as_view(),name='category'),
     #通过正则取文章的pk，然后传参给views.py里的category函数
+    url(r'^tag/(?P<pk>[0-9]+)/$',views.TagView.as_view(),name='tag')
 ]

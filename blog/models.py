@@ -48,8 +48,16 @@ class Post(models.Model):
     #文章作者，从django.contrib.auth.models导入User，一个作者会有多篇文章，一对多，外码
     author = models.ForeignKey(User)
 
+    #文章阅读数
+    views = models.PositiveIntegerField(default=0)
+
     def __unicode__(self):
         return self.title
+
+    #每一次阅读文章都会阅读数+1
+    def views_increase(self):
+        self.views += 1
+        self.save(update_fields=['views'])
 
     #每篇独立文章都会有独立的url，这个是用于重定向的函数
     def get_absolute_url(self):
